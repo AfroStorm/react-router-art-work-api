@@ -1,0 +1,38 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore logs
+logs
+*.log
+
+# Ignore temporary files
+tmp
+*.tmp
+
+# Ignore build output
+dist
+build
+
+# Ignore environment variables files
+.env
+.env.*
+
+# Ignore Docker-related files
+Dockerfile
+.dockerignore
+
+# Ignore version control files
+.git
+.gitignore
+.gitlab-ci.yml
+.github
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore editor-specific files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace

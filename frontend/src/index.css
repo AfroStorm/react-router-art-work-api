@@ -1,0 +1,362 @@
+/* ============= GLOBAL CSS =============== */
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+} /*16px*/
+
+.Toastify__toast-body {
+  text-transform: capitalize;
+}
+
+:root {
+  --gray-100: #f9fafb;
+  --gray-200: #f3f4f6;
+  --gray-300: #e5e7eb;
+  --gray-400: #d1d5db;
+  --gray-500: #9ca3af;
+  --gray-600: #6b7280;
+  --gray-700: #4b5563;
+  --gray-800: #374151;
+  --gray-900: #1f2937;
+  --gray-1000: #111827;
+
+  --turquoise-100: #eefdff;
+  --turquoise-200: #d5f9fe;
+  --turquoise-300: #aef0fa;
+  --turquoise-400: #79deee;
+  --turquoise-500: #44bfd3;
+  --turquoise-600: #2199ac;
+  --turquoise-700: #13707e;
+  --turquoise-800: #104952;
+  --turquoise-900: #0e2428;
+
+  --red-100: #ffdcd7;
+  --red-200: #ffc1ba;
+  --red-300: #ffa198;
+  --red-400: #ff7b72;
+  --red-500: #f85149;
+  --red-600: #da3633;
+  --red-700: #b62324;
+  --red-800: #8e1519;
+  --red-900: #67060c;
+  --red-1000: #490202;
+
+  --green-100: #f0fdf7;
+  --green-200: #dbf9eb;
+  --green-300: #b6f2d6;
+  --green-400: #7ce3b3;
+  --green-500: #3ec786;
+  --green-600: #13a05f;
+  --green-700: #057642;
+  --green-800: #004d2a;
+  --green-900: #022716;
+
+  /* dark theme colors good on bright/dark backgrounds */
+  --darkTheme-teal: #008080;
+
+  --primary: #083d77;
+  --secondary: #9b287b;
+  --accent-1: #96acb7;
+  --accent-2: #7cea9c;
+  --accent-3: #4c2e05;
+
+  --text-1: #64748b;
+  --text-2: #334155;
+
+  /* shadows */
+  --shadow-100: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-200: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --shadow-300: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --shadow-400: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  --shadow-500: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+  --shadow-in: 3px 3px 6px 0px #ccdbe8 inset,
+    -3px -3px 6px 1px rgba(255, 255, 255, 0.5) inset;
+  --shadow-out: 6px 2px 16px 0px rgba(136, 165, 191, 0.48),
+    -6px -2px 16px 0px rgba(255, 255, 255, 0.8);
+
+  /* text shadow */
+  --text-shadow-100: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+  /* container width */
+  --view-width: 100vw;
+  --fluid-width-90: 90vw;
+  --fluid-width-80: 80vw;
+
+  --max-width-xxs: 374.98px;
+  --max-width-xs: 575.98px;
+  --max-width-sm: 767.98px;
+  --max-width-md: 991.98px;
+  --max-width-lg: 1199.98px;
+  --max-width-xl: 1399.98px;
+  --max-width-xxl: 1400px;
+  /* border-radius */
+  --radius-100: 0.2rem;
+  --radius-200: 0.4rem;
+
+  /* transitions */
+  --transition-quick: ease 0.3s;
+  --transition-slow: ease 0.9s;
+}
+
+/* inknut-antiqua fonts */
+.inknut-antiqua-light {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.inknut-antiqua-regular {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inknut-antiqua-medium {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inknut-antiqua-semibold {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.inknut-antiqua-bold {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.inknut-antiqua-extrabold {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.inknut-antiqua-black {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* pacifico font */
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* input fields */
+.input-field-light {
+  position: relative;
+  cursor: text;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0 16px;
+  height: 2rem;
+  background-color: #fff;
+  border: 1px solid #d6d6e7;
+  border-radius: 3px;
+  color: rgb(35, 38, 59);
+  box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
+  overflow: hidden;
+  transition: all 100ms ease-in-out;
+  :focus {
+    border-color: #3c4fe0;
+    box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%);
+  }
+}
+
+.input-field-night {
+  padding: 6px 12px;
+  background: rgb(31, 32, 35);
+  border: 1px solid rgb(60, 63, 68);
+  border-radius: 4px;
+  font-size: 13px;
+  color: rgb(247, 248, 248);
+  height: 2rem;
+  appearance: none;
+  transition: border 0.15s ease 0s;
+  :focus {
+    outline: none;
+    box-shadow: none;
+    border-color: rgb(100, 153, 255);
+  }
+}
+
+.input-field-strong {
+  border: 3px solid #000;
+  border-radius: 5px;
+  height: 2rem;
+  line-height: normal;
+  color: #282828;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  user-select: auto;
+  font-size: 16px;
+  padding: 0 6px;
+  padding-left: 12px;
+  :focus {
+    border: 3px solid #5551ff;
+  }
+}
+
+.input-field-slim {
+  background-color: #fff;
+  height: 2rem;
+  padding: 3px 7px;
+  line-height: normal;
+  border: 1px solid #a6a6a6;
+  border-top-color: #949494;
+  border-radius: 0.4rem;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 50%), 0 1px 0 rgb(0 0 0 / 7%) inset;
+  outline: 0;
+  color: #111;
+  font-size: 13px;
+  :focus {
+    border-color: #e77600;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+  }
+}
+/* buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+  outline: none;
+  cursor: pointer;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 0.4rem;
+  padding: 0.3rem 1rem;
+  border: 1px solid #222222;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s,
+    -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  background: #fff;
+  color: #222222;
+}
+.btn:hover {
+  border-color: #000000;
+  background: #f7f7f7;
+}
+/* loading spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  border: 0.3rem solid #f3f3f3; /* Light grey */
+  border-top: 0.3rem solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  animation: spin 0.6s linear infinite;
+}
+/* font classes */
+
+/* dark mode toggle class */
+.dark-mode {
+  background: var(--gray-800);
+  color: var(--gray-100);
+}
+
+body {
+  background: var(--gray-100);
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  color: var(--textColor);
+  transition: var(--transition-slow);
+}
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 5rem); /* Large heading */
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 3rem); /* Medium heading */
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 2.5rem); /* Small heading */
+}
+
+h4 {
+  font-size: clamp(1rem, 2vw, 2rem); /* Extra small heading */
+}
+
+h5 {
+  font-size: clamp(0.875rem, 1.5vw, 1.5rem); /* Tiny heading */
+}
+
+/* BIGGER FONTS */
+/* h1 {
+  font-size: clamp(3rem, 6vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(2rem, 4vw, 4rem);
+}
+
+h4 {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+}
+
+h5 {
+  font-size: clamp(1rem, 2vw, 2rem);
+}
+ */
+.text {
+  margin-bottom: 1.5rem;
+  max-width: 40em;
+}
+
+small,
+.text-small {
+  font-size: var(--small-text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
