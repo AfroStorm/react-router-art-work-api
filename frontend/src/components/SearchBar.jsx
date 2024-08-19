@@ -15,6 +15,8 @@ const StyledDiv = styled.div`
   .input-field-custom {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+    color: var(--text-1);
+    font-weight: 900;
   }
   .btn-custom {
     border-top-left-radius: 0;
@@ -22,14 +24,14 @@ const StyledDiv = styled.div`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ searchTerm }) => {
   return (
     <StyledDiv>
-      <Form className="form" method="POST">
+      <Form className="form">
         <input
           type="search"
           name="search"
-          defaultValue={"flowers"}
+          defaultValue={searchTerm}
           className="input-field-slim input-field-custom"
         />
         <button type="submit" className="btn btn-custom">

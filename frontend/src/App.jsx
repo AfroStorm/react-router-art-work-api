@@ -20,7 +20,6 @@ const router = createBrowserRouter([
       {
         index: true,
         loader: landingLoader(queryClient),
-
         element: <Landing />,
       },
       {

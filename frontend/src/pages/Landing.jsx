@@ -26,6 +26,7 @@ const StyledSection = styled.section`
 
 import { useQuery } from "@tanstack/react-query";
 import { useLoaderData } from "react-router-dom";
+import ArtWorkList from "../components/ArtWorkList";
 const searchUrl = "https://api.artic.edu/api/v1/artworks/search";
 
 const searchArtworkQuery = (searchTerm) => {
@@ -35,11 +36,12 @@ const searchArtworkQuery = (searchTerm) => {
       const { data } = await axios.get(searchUrl, {
         params: {
           q: searchTerm,
-          // fields: "id,title,artist_display,date_display,main_reference_number",
-          // limits: "page=2&limit=20",
+          fields:
+            "id,title,image_id,date_display,artist_display,place_of_origin,medium_display,dimensions_detail,credit_line,is_public_domain",
+          limits: "page=2&limit=20",
         },
       });
-      return data;
+      return data.data;
     },
   };
 };
@@ -48,23 +50,22 @@ export const loader =
   (queryClient) =>
   async ({ request }) => {
     const url = new URL(request.url);
-    let searchTerm;
-    searchTerm = url.searchParams.get("search" || "");
-    searchTerm = !searchTerm ? "flowers" : searchTerm;
+    const searchTerm = url.searchParams.get("search") || "flowers";
     await queryClient.ensureQueryData(searchArtworkQuery(searchTerm));
     return { searchTerm };
   };
 
 const Landing = () => {
   const { searchTerm } = useLoaderData();
-  const { data: artWorks } = searchArtworkQuery(searchTerm);
+  const { data: artWorks } = useQuery(searchArtworkQuery(searchTerm));
   return (
     <StyledSection>
       <h2 className="title pacifico-regular">
         Discover the World's Art at Your Fingertips.
       </h2>
       <img src={museumImg} alt="image" className="img" />
-      <SearchBar />
+      <SearchBar searchTerm={searchTerm} />
+      <ArtWorkList artWorks={artWorks} />
     </StyledSection>
   );
 };
