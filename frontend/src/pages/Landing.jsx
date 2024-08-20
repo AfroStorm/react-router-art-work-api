@@ -4,7 +4,6 @@ import SearchBar from "../components/SearchBar";
 import axios from "axios";
 
 const StyledSection = styled.section`
-  padding: 5rem 0;
   display: grid;
   justify-items: center;
 

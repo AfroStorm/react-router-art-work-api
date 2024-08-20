@@ -1,8 +1,15 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { HomeLayout, Landing } from "./pages";
+import {
+  Error404,
+  HomeLayout,
+  Landing,
+  SinglePageError,
+  SingleArtWork,
+} from "./pages";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { loader as landingLoader } from "./pages/Landing";
+import { loader as artWorkLoader } from "./pages/SingleArtWork";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <Error404 />,
     children: [
       {
         index: true,
@@ -23,11 +31,14 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: "art-work",
-        element: <h2>art work</h2>,
+        path: "art-work/:id",
+        errorElement: <SinglePageError />,
+        loader: artWorkLoader(queryClient),
+        element: <SingleArtWork />,
       },
       {
         path: "about",
+        errorElement: <SinglePageError />,
         element: <h2>about</h2>,
       },
       {
@@ -45,9 +56,6 @@ function App() {
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-      {/* try to successfully fetch the artwork data from the api  */}
-      {/* pass the searchTerm from landing.jsx into the searchBar.jsx */}
-      {/* create a artWorkList.jsx and display the artwork in cards that lead to a single art work */}
     </>
   );
 }

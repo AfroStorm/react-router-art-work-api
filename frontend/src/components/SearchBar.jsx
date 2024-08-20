@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigation } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -21,10 +21,14 @@ const StyledDiv = styled.div`
   .btn-custom {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    color: var(--gray-100);
+    background: var(--primary);
   }
 `;
 
 const SearchBar = ({ searchTerm }) => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
   return (
     <StyledDiv>
       <Form className="form">
@@ -34,8 +38,12 @@ const SearchBar = ({ searchTerm }) => {
           defaultValue={searchTerm}
           className="input-field-slim input-field-custom"
         />
-        <button type="submit" className="btn btn-custom">
-          submit
+        <button
+          type="submit"
+          className="btn btn-custom"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "submitting" : "submit"}
         </button>
       </Form>
     </StyledDiv>

@@ -58,6 +58,7 @@ const StyledLi = styled.li`
 `;
 
 const ArtWorkCard = ({ item }) => {
+  const id = item.id;
   const title = item.title;
   const imageUrl = `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`;
   const date = item.date_display;
@@ -72,7 +73,7 @@ const ArtWorkCard = ({ item }) => {
 
   return (
     <StyledLi>
-      <div className="card">
+      <article className="card">
         <div className="img-container">
           <img src={imageUrl} alt={title} />
         </div>
@@ -92,10 +93,10 @@ const ArtWorkCard = ({ item }) => {
             dimensions: <span>{dimensions}</span>
           </p>
         </div>
-        <Link to={""} className="btn btn-custom">
+        <Link to={`art-work/${id}`} className="btn btn-custom">
           detail
         </Link>
-      </div>
+      </article>
     </StyledLi>
   );
 };

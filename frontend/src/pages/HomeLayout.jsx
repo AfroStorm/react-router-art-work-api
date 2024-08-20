@@ -5,6 +5,8 @@ import { Outlet, useNavigation } from "react-router-dom";
 const StyledDiv = styled.div`
   width: var(--fluid-width-80);
   max-width: var(--max-width-lg);
+  padding: 5rem 0;
+
   margin: 0 auto;
 `;
 
