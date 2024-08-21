@@ -5,11 +5,14 @@ import {
   Landing,
   SinglePageError,
   SingleArtWork,
+  NewsLetter,
+  About,
 } from "./pages";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as artWorkLoader } from "./pages/SingleArtWork";
+import { action as newsLetterAction } from "./pages/NewsLetter";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,11 +42,12 @@ const router = createBrowserRouter([
       {
         path: "about",
         errorElement: <SinglePageError />,
-        element: <h2>about</h2>,
+        element: <About />,
       },
       {
         path: "newsletter",
-        element: <h2>newsletter</h2>,
+        action: newsLetterAction,
+        element: <NewsLetter />,
       },
     ],
   },
@@ -56,6 +60,7 @@ function App() {
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
+      {/* create newsletter page */}
     </>
   );
 }

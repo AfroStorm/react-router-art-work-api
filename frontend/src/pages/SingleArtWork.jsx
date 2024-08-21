@@ -99,19 +99,21 @@ export const loader =
 
 const SingleArtWork = () => {
   const { id } = useLoaderData();
-  const { data } = useQuery(useSingleArtWorkQuery(id));
+  const { data: item } = useQuery(useSingleArtWorkQuery(id));
   // data properties
-  const title = data.title;
-  const imageUrl = `https://www.artic.edu/iiif/2/${data.image_id}/full/843,/0/default.jpg`;
-  const date = data.date_display;
-  const artistOrigin = data.artist_display || data.place_of_origin;
-  const medium = data.medium_display; // Simplified medium
-  const dimensions = `a: ${data.dimensions_detail[0]?.height} x ${data.dimensions_detail[0]?.width} cm
-               b: ${data.dimensions_detail[1]?.height} x ${data.dimensions_detail[1]?.width} cm`;
-  const creditLine = data.credit_line;
-  const publicDomain = data.is_public_domain ? "Yes" : "No";
-  const description = `This textile artwork, originating from ${data.place_of_origin}, around ${data.date_display}
-               showcases the intricate technique of silk plain weaving, characterized by ${data.medium_display}.`;
+  const title = item.title;
+  const imageUrl = item.image_id
+    ? `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`
+    : "";
+  const date = item.date_display;
+  const artistOrigin = item.artist_display || item.place_of_origin;
+  const medium = item.medium_display; // Simplified medium
+  const dimensions = `a: ${item.dimensions_detail[0]?.height} x ${item.dimensions_detail[0]?.width} cm
+               b: ${item.dimensions_detail[1]?.height} x ${item.dimensions_detail[1]?.width} cm`;
+  const creditLine = item.credit_line;
+  const publicDomain = item.is_public_domain ? "Yes" : "No";
+  const description = `This textile artwork, originating from ${item.place_of_origin}, around ${item.date_display}
+               showcases the intricate technique of silk plain weaving, characterized by ${item.medium_display}.`;
 
   return (
     <StyledSection>

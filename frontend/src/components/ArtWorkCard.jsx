@@ -60,7 +60,9 @@ const StyledLi = styled.li`
 const ArtWorkCard = ({ item }) => {
   const id = item.id;
   const title = item.title;
-  const imageUrl = `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`;
+  const imageUrl = item.image_id
+    ? `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`
+    : "";
   const date = item.date_display;
   const artistOrigin = item.artist_display || item.place_of_origin;
   const medium = item.medium_display.split(",")[0]; // Simplified medium

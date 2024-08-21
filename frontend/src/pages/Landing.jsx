@@ -37,7 +37,7 @@ const searchArtworkQuery = (searchTerm) => {
           q: searchTerm,
           fields:
             "id,title,image_id,date_display,artist_display,place_of_origin,medium_display,dimensions_detail,credit_line,is_public_domain",
-          limits: "page=2&limit=20",
+          limit: 40,
         },
       });
       return data.data;
@@ -48,23 +48,51 @@ const searchArtworkQuery = (searchTerm) => {
 export const loader =
   (queryClient) =>
   async ({ request }) => {
+    let searchTerm;
     const url = new URL(request.url);
-    const searchTerm = url.searchParams.get("search") || "flowers";
+    searchTerm = url.searchParams.get("search") || "";
+    // storing search term into local storage
+    searchTerm && localStorage.setItem("searchTerm", searchTerm);
+    searchTerm = localStorage.getItem("searchTerm") || searchTerm;
+
     await queryClient.ensureQueryData(searchArtworkQuery(searchTerm));
     return { searchTerm };
   };
 
+// filtering the art works by image dimensions(portrait)
+const filteredQueryResults = (artWorks) => {
+  const filteredArtWorks = artWorks.filter((item) => {
+    // checks  if dimensions_detail array and content are truthy
+    if (item.dimensions_detail && item.dimensions_detail[0]) {
+      // checks if width and height are truthy and height > width
+      if (
+        item.dimensions_detail[0].height &&
+        item.dimensions_detail[0].width &&
+        item.dimensions_detail[0].height > item.dimensions_detail[0].width
+      ) {
+        // checks for an image id
+        if (item.image_id) {
+          return item;
+        }
+      }
+    }
+  });
+  return filteredArtWorks;
+};
+
 const Landing = () => {
   const { searchTerm } = useLoaderData();
   const { data: artWorks } = useQuery(searchArtworkQuery(searchTerm));
+  const filteredArtWorks = filteredQueryResults(artWorks);
+
   return (
     <StyledSection>
       <h2 className="title pacifico-regular">
         Discover the World's Art at Your Fingertips.
       </h2>
       <img src={museumImg} alt="image" className="img" />
-      <SearchBar searchTerm={searchTerm} />
-      <ArtWorkList artWorks={artWorks} />
+      <SearchBar />
+      <ArtWorkList artWorks={filteredArtWorks} />
     </StyledSection>
   );
 };
