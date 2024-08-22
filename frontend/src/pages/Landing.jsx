@@ -62,20 +62,11 @@ export const loader =
 // filtering the art works by image dimensions(portrait)
 const filteredQueryResults = (artWorks) => {
   const filteredArtWorks = artWorks.filter((item) => {
-    // checks  if dimensions_detail array and content are truthy
-    if (item.dimensions_detail && item.dimensions_detail[0]) {
-      // checks if width and height are truthy and height > width
-      if (
-        item.dimensions_detail[0].height &&
-        item.dimensions_detail[0].width &&
-        item.dimensions_detail[0].height > item.dimensions_detail[0].width
-      ) {
-        // checks for an image id
-        if (item.image_id) {
-          return item;
-        }
-      }
-    }
+    return (
+      item.dimensions_detail[0]?.height > item.dimensions_detail[0]?.width &&
+      item.image_id &&
+      item
+    );
   });
   return filteredArtWorks;
 };

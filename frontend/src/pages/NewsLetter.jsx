@@ -1,5 +1,10 @@
 import axios from "axios";
-import { Form, redirect, useNavigation } from "react-router-dom";
+import {
+  Form,
+  redirect,
+  useNavigation,
+  useOutletContext,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 
@@ -14,6 +19,8 @@ const StyledSection = styled.section`
   max-width: var(--max-width-xxs);
   margin: 0 auto;
   min-height: 20rem;
+  background: ${({ $isDarkMode }) => $isDarkMode && "var(--gray-700)"};
+  transition: var(--transition-quick);
 
   .form {
     display: flex;
@@ -32,7 +39,9 @@ const StyledSection = styled.section`
   .btn-custom {
     color: var(--gray-100);
     margin-top: 1rem;
-    background: var(--primary);
+    background: ${({ $isDarkMode }) =>
+      $isDarkMode ? "var(--secondary)" : "var(--primary)"};
+    transition: var(--transition-quick);
   }
 `;
 const newsletterUrl = "https://www.course-api.com/cocktails-newsletter";
@@ -53,10 +62,11 @@ export const action = async ({ request }) => {
 };
 
 const NewsLetter = () => {
+  const { isDarkMode } = useOutletContext();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
-    <StyledSection>
+    <StyledSection $isDarkMode={isDarkMode}>
       <Form method="POST" className="form">
         {/* name */}
         <label htmlFor="name" className="input-label">

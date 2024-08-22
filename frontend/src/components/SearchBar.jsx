@@ -1,4 +1,4 @@
-import { Form, useNavigation } from "react-router-dom";
+import { Form, useNavigation, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -19,7 +19,9 @@ const StyledDiv = styled.div`
   }
   .btn-custom {
     color: var(--gray-100);
-    background: var(--primary);
+    background: ${({ $isDarkMode }) =>
+      $isDarkMode ? "var(--secondary)" : "var(--primary)"};
+    transition: var(--transition-quick);
   }
 
   @media screen and (min-width: 340px) {
@@ -39,11 +41,12 @@ const StyledDiv = styled.div`
 `;
 
 const SearchBar = () => {
+  const { isDarkMode } = useOutletContext();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const storedSearchTerm = localStorage.getItem("searchTerm");
   return (
-    <StyledDiv>
+    <StyledDiv $isDarkMode={isDarkMode}>
       <Form className="form">
         <input
           type="search"

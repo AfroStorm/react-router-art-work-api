@@ -60,7 +60,6 @@ function App() {
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-      {/* create newsletter page */}
     </>
   );
 }

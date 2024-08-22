@@ -63,7 +63,8 @@ html {
   --darkTheme-teal: #008080;
 
   --primary: #083d77;
-  --secondary: #9b287b;
+  --secondary: #008080;
+  --secondary-2: #9b287b;
   --accent-1: #96acb7;
   --accent-2: #7cea9c;
   --accent-3: #4c2e05;
@@ -285,7 +286,7 @@ body {
   font-style: normal;
   line-height: 1;
   color: var(--textColor);
-  transition: var(--transition-slow);
+  transition: var(--transition-quick);
 }
 p {
   margin: 0;

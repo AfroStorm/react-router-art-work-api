@@ -1,9 +1,13 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
 import brandFont from "../assets/fonts/PaybAck.ttf";
+import { CgDarkMode } from "react-icons/cg";
+
+import { useEffect } from "react";
 
 const StyledNav = styled.nav`
+  position: relative;
+
   @font-face {
     font-family: "brand-font";
     src: url(${brandFont}) format("truetype");
@@ -19,8 +23,15 @@ const StyledNav = styled.nav`
     flex-direction: column;
     width: var(--fluid-width-90);
     max-width: var(--max-width-md);
-    gap: 2rem;
     margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .brand-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .brand-name {
@@ -31,6 +42,28 @@ const StyledNav = styled.nav`
     text-decoration-thickness: 4px;
   }
 
+  .dark-mode-toggle {
+    top: 0.7rem;
+    right: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
+    align-content: center;
+    gap: 0.3rem;
+    font-size: 2rem;
+    color: ${({ $isDarkMode }) => ($isDarkMode ? "var(--gray-100)" : "")};
+    background: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    transition: var(--transition-slow);
+    span {
+      font-size: 1rem;
+      margin: auto 0;
+      font-weight: 700;
+      width: 5.5rem;
+    }
+  }
+
   .links {
     display: flex;
     flex-direction: column;
@@ -38,7 +71,6 @@ const StyledNav = styled.nav`
   }
 
   .link {
-    color: var(--gray-1000);
     text-transform: capitalize;
     display: inline-block;
     font-weight: 700;
@@ -76,21 +108,35 @@ const StyledNav = styled.nav`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+  useEffect(() => {
+    document.querySelector("body").classList.toggle("dark-mode");
+  }, [isDarkMode]);
+
   return (
-    <StyledNav>
+    <StyledNav $isDarkMode={isDarkMode}>
       <div className="center-div">
-        <h3 className="brand-name">Art-Vault</h3>
+        <div className="brand-container">
+          <h3 className="brand-name">Art-Vault</h3>
+          <button
+            type="button"
+            className={"dark-mode-toggle"}
+            onClick={() => setIsDarkMode(!isDarkMode)}
+          >
+            <CgDarkMode />
+            <span>{isDarkMode ? "Day Mode" : "Night Mode"}</span>
+          </button>
+        </div>
 
         <div className="links-container">
           <div className="links">
-            <NavLink to={"/"} className="link">
+            <NavLink to={"/"} className={"link"}>
               home
             </NavLink>
-            <NavLink to={"about"} className="link">
+            <NavLink to={"about"} className={"link"}>
               about
             </NavLink>
-            <NavLink to={"newsletter"} className="link">
+            <NavLink to={"newsletter"} className={"link"}>
               newsletter
             </NavLink>
           </div>

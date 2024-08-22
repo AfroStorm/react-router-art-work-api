@@ -9,14 +9,15 @@ const StyledSection = styled.section`
   min-height: 100vh;
 
   .center-div {
-    text-align: center;
+    display: grid;
+    place-items: center;
     p {
       margin: 0.5rem 0 1rem 0;
     }
   }
   .img-container {
     overflow: hidden;
-    max-width: var(--max-width-sm);
+    max-width: var(--max-width-xxs);
     .img {
       width: 100%;
       margin-bottom: 0.2rem;
@@ -26,6 +27,7 @@ const StyledSection = styled.section`
   .link {
     font-size: 1.5rem;
     color: var(--secondary);
+    text-transform: capitalize;
   }
 `;
 

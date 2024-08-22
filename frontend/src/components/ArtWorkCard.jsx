@@ -1,17 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledLi = styled.li`
   .card {
     height: 100%;
     border-radius: var(--radius-100);
-    box-shadow: var(--shadow-200);
+    box-shadow: var(--shadow-300);
     transition: var(--transition-quick);
     display: grid;
     gap: 1rem;
-  }
-  .card:hover {
-    box-shadow: var(--shadow-300);
+    background: ${({ $isDarkMode }) => $isDarkMode && "var(--gray-700)"};
   }
 
   .img-container {
@@ -30,13 +28,17 @@ const StyledLi = styled.li`
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    color: var(--primary);
+    color: ${({ $isDarkMode }) =>
+      $isDarkMode ? "var(--secondary)" : "var(--primary)"};
     font-weight: 700;
+    transition: var(--transition-quick);
   }
   .info span {
-    color: var(--text-1);
     text-transform: lowercase;
     font-weight: normal;
+    color: ${({ $isDarkMode }) =>
+      $isDarkMode ? "var(--gray-100)" : "var(--text-1)"};
+    transition: var(--transition-quick);
   }
 
   .btn-custom {
@@ -58,6 +60,7 @@ const StyledLi = styled.li`
 `;
 
 const ArtWorkCard = ({ item }) => {
+  const { isDarkMode } = useOutletContext();
   const id = item.id;
   const title = item.title;
   const imageUrl = item.image_id
@@ -74,7 +77,7 @@ const ArtWorkCard = ({ item }) => {
   const dimensions = height && width ? `${height} x ${width} cm` : "no data";
 
   return (
-    <StyledLi>
+    <StyledLi $isDarkMode={isDarkMode}>
       <article className="card">
         <div className="img-container">
           <img src={imageUrl} alt={title} />
@@ -83,16 +86,20 @@ const ArtWorkCard = ({ item }) => {
 
         <div className="info">
           <p className="date">
-            date: <span>{date}</span>
+            date:&nbsp;
+            <span>{date}</span>
           </p>
           <p className="artist-origin">
-            origin: <span>{artistOrigin}</span>
+            origin:&nbsp;
+            <span>{artistOrigin}</span>
           </p>
           <p className="medium">
-            medium: <span>{medium}...</span>
+            medium:&nbsp;
+            <span>{medium}...</span>
           </p>
           <p className="dimensions">
-            dimensions: <span>{dimensions}</span>
+            dimensions:&nbsp;
+            <span>{dimensions}</span>
           </p>
         </div>
         <Link to={`art-work/${id}`} className="btn btn-custom">
