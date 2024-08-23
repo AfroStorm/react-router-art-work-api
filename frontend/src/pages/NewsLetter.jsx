@@ -75,6 +75,7 @@ const NewsLetter = () => {
           name="name"
           id="name"
           defaultValue={"Peter"}
+          required
           className="input-field-slim input-field-custom"
         />
         {/* last name */}
@@ -86,6 +87,7 @@ const NewsLetter = () => {
           name="lastName"
           id="lastName"
           defaultValue={"Robertson"}
+          required
           className="input-field-slim input-field-custom"
         />
         {/* email */}
@@ -98,6 +100,7 @@ const NewsLetter = () => {
           id="email"
           disabled={isSubmitting}
           defaultValue={"test@test.com"}
+          required
           className="input-field-slim input-field-custom"
         />
         <button type="submit" className="btn btn-custom">

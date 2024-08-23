@@ -9,6 +9,7 @@ Currently, two official plugins are available:
 
 #### api url's
 
+Art Institute Chicago API:
 Documentation - https://api.artic.edu/docs/#introduction
 
 ```js
