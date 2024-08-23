@@ -63,7 +63,9 @@ export const loader =
 const filteredQueryResults = (artWorks) => {
   const filteredArtWorks = artWorks.filter((item) => {
     return (
-      item.dimensions_detail[0]?.height > item.dimensions_detail[0]?.width &&
+      item.dimensions_detail[0]?.height &&
+      item.dimensions_detail[0]?.width &&
+      item.dimensions_detail[0].height > item.dimensions_detail[0].width &&
       item.image_id &&
       item
     );

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
@@ -20,17 +19,14 @@ const StyledSection = styled.section`
     margin-bottom: 3rem;
     color: var(--gray-100);
     width: 7.5rem;
-    background: ${({ $isDarkMode }) =>
-      $isDarkMode ? "var(--secondary)" : "var(--primary)"};
-    transition: var(--transition-quick);
+    background: var(--secondary);
   }
 `;
 
 const About = () => {
   const [isGerman, setIsGerman] = useState(false);
-  const { isDarkMode } = useOutletContext();
   return (
-    <StyledSection $isDarkMode={isDarkMode}>
+    <StyledSection>
       {isGerman ? (
         <>
           <button className="btn btn-custom" onClick={() => setIsGerman(false)}>

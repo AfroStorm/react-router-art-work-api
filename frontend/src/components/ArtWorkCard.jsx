@@ -9,6 +9,7 @@ const StyledLi = styled.li`
     transition: var(--transition-quick);
     display: grid;
     gap: 1rem;
+    padding: 0.5rem;
     background: ${({ $isDarkMode }) => $isDarkMode && "var(--gray-700)"};
   }
 
@@ -28,10 +29,9 @@ const StyledLi = styled.li`
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    color: ${({ $isDarkMode }) =>
-      $isDarkMode ? "var(--secondary)" : "var(--primary)"};
+    color: var(--secondary);
     font-weight: 700;
-    transition: var(--transition-quick);
+    line-height: 1.5;
   }
   .info span {
     text-transform: lowercase;
@@ -49,7 +49,6 @@ const StyledLi = styled.li`
     color: var(--gray-100);
     background: var(--secondary);
     border-color: var(--secondary);
-    transition: var(--transition-quick);
   }
 
   @media screen and (min-width: 768px) {

@@ -4,26 +4,43 @@ import { Outlet, useNavigation } from "react-router-dom";
 import { useState } from "react";
 
 const StyledDiv = styled.div`
-  width: var(--fluid-width-80);
+  width: var(--fluid-width-90);
   max-width: var(--max-width-lg);
   padding: 5rem 0;
 
   margin: 0 auto;
 `;
 
-const HomeLayout = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const getInitialDarkMode = () => {
+  const prefersDarkMode = window.matchMedia(
+    "(prefers-color-scheme:dark)"
+  ).matches;
+  const storedDarkMode = localStorage.getItem("darkTheme");
+  if (!storedDarkMode) {
+    return prefersDarkMode;
+  }
 
+  return storedDarkMode === "true";
+};
+
+const HomeLayout = () => {
+  const [isDarkMode, setIsDarkMode] = useState(getInitialDarkMode());
+
+  const darkThemeToggle = () => {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    localStorage.setItem("darkTheme", newDarkMode);
+  };
   const navigation = useNavigation();
   const isPageLoading = navigation.state === "loading";
   return (
     <>
-      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+      <Navbar isDarkMode={isDarkMode} darkThemeToggle={darkThemeToggle} />
       <StyledDiv>
         {isPageLoading ? (
           <div className="loading"></div>
         ) : (
-          <Outlet context={{ isDarkMode, setIsDarkMode }} />
+          <Outlet context={{ isDarkMode, darkThemeToggle }} />
         )}
       </StyledDiv>
     </>

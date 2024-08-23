@@ -108,7 +108,7 @@ const StyledNav = styled.nav`
   }
 `;
 
-const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+const Navbar = ({ isDarkMode, darkThemeToggle }) => {
   useEffect(() => {
     document.querySelector("body").classList.toggle("dark-mode");
   }, [isDarkMode]);
@@ -121,7 +121,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <button
             type="button"
             className={"dark-mode-toggle"}
-            onClick={() => setIsDarkMode(!isDarkMode)}
+            onClick={darkThemeToggle}
           >
             <CgDarkMode />
             <span>{isDarkMode ? "Day Mode" : "Night Mode"}</span>

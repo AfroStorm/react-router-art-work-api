@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
@@ -9,7 +9,7 @@ const StyledSection = styled.section`
 
   .btn-custom {
     color: var(--gray-100);
-    background: var(--primary);
+    background: var(--secondary);
     margin-bottom: 5rem;
   }
 
@@ -21,6 +21,8 @@ const StyledSection = styled.section`
     border-radius: var(--radius-100);
     box-shadow: var(--shadow-300);
     padding: 0.5rem;
+    background: ${({ $isDarkMode }) => $isDarkMode && "var(--gray-700)"};
+    transition: var(--transition-quick);
   }
 
   .img-container {
@@ -40,10 +42,12 @@ const StyledSection = styled.section`
     padding: 0.4rem;
     gap: 1rem;
   }
-  .info-container span {
-    color: var(--text-1);
+  .info span {
     text-transform: lowercase;
     font-weight: normal;
+    color: ${({ $isDarkMode }) =>
+      $isDarkMode ? "var(--gray-100)" : "var(--text-1)"};
+    transition: var(--transition-quick);
   }
 
   .info {
@@ -51,11 +55,12 @@ const StyledSection = styled.section`
     flex-direction: column;
     text-transform: capitalize;
     gap: 0.3rem;
-    color: var(--primary);
+    color: var(--secondary);
     font-weight: 700;
+    line-height: 1.5;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     .card {
       grid-template-columns: auto 1fr;
       column-gap: 1rem;
@@ -98,6 +103,7 @@ export const loader =
   };
 
 const SingleArtWork = () => {
+  const { isDarkMode } = useOutletContext();
   const { id } = useLoaderData();
   const { data: item } = useQuery(useSingleArtWorkQuery(id));
   // data properties
@@ -116,7 +122,7 @@ const SingleArtWork = () => {
                showcases the intricate technique of silk plain weaving, characterized by ${item.medium_display}.`;
 
   return (
-    <StyledSection>
+    <StyledSection $isDarkMode={isDarkMode}>
       <Link to={"/"} className="btn btn-custom">
         <span>back home </span>
       </Link>
@@ -128,27 +134,28 @@ const SingleArtWork = () => {
 
         <div className="info-container">
           <h2 className="title">{title}</h2>
+
           <div className="info">
             <p className="date">
-              date: <span>{date}.</span>
+              date:&nbsp;<span>{date}.</span>
             </p>
             <p className="artist-origin">
-              origin: <span>{artistOrigin}.</span>
+              origin:&nbsp;<span>{artistOrigin}.</span>
             </p>
             <p className="medium">
-              medium: <span>{medium}.</span>
+              medium:&nbsp;<span>{medium}.</span>
             </p>
             <p className="dimensions">
-              dimensions: <span>{dimensions}.</span>
+              dimensions:&nbsp;<span>{dimensions}.</span>
             </p>
             <p className="credit-line">
-              credit line: <span>{creditLine}.</span>
+              credit line:&nbsp;<span>{creditLine}.</span>
             </p>
             <p className="public-domain">
-              public domain: <span>{publicDomain}.</span>
+              public domain:&nbsp;<span>{publicDomain}.</span>
             </p>
             <p className="description">
-              description: <span>{description}.</span>
+              description:&nbsp;<span>{description}.</span>
             </p>
           </div>
         </div>

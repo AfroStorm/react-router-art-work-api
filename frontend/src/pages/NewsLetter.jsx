@@ -39,9 +39,7 @@ const StyledSection = styled.section`
   .btn-custom {
     color: var(--gray-100);
     margin-top: 1rem;
-    background: ${({ $isDarkMode }) =>
-      $isDarkMode ? "var(--secondary)" : "var(--primary)"};
-    transition: var(--transition-quick);
+    background: var(--secondary);
   }
 `;
 const newsletterUrl = "https://www.course-api.com/cocktails-newsletter";
